@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏-miles-2016-06-27 12:16 -->
+  <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -miles-2016-06-27 12:16-->
+  <title>酷传-iOS数据监控</title>
+
+
+    <link rel="stylesheet" type="text/css" href="/static/common.css" />
+    <link rel="stylesheet" type="text/css" href="/pagelet/cpdList/cpdList.css" />
+    <link rel="stylesheet" type="text/css" href="/pagelet/cpdList/echartsItem.css" />
+    <link rel="stylesheet" type="text/css" href="/pagelet/hotkeyword/hotkeyword.css" />
+</head>
+<body>
+    <div id="cpdMain"></div>
+</body>
+<script src="/static/lib/mod.js"></script>
+<script type="text/javascript" src="/pkg/pages/index.html_map.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.js"></script>
+<script type="text/javascript" src="/static/minxins/utils.js"></script>
+<script type="text/javascript" src="/static/minxins/datetime.js"></script>
+<script type="text/javascript" src="/static/lib/react.js"></script>
+<script type="text/javascript" src="/static/lib/react-dom.js"></script>
+<script type="text/javascript" src="/static/lib/reactRouter.js"></script>
+<script type="text/javascript" src="/pagelet/parentClass/pc.js"></script>
+<script type="text/javascript" src="/pagelet/cpdList/components/chartsItem.js"></script>
+<script type="text/javascript" src="/pagelet/cpdList/components/cpdList.js"></script>
+<script type="text/javascript" src="/static/lib/reflux.js"></script>
+<script type="text/javascript" src="/pagelet/hotkeyword/action/action.js"></script>
+<script type="text/javascript" src="/pagelet/hotkeyword/store/store.js"></script>
+<script type="text/javascript" src="/pagelet/hotkeyword/components/hotKeywordTop.js"></script>
+<script type="text/javascript" src="/static/entry.js"></script>
+<script>
+        window.startTime = chrome.csi();
+  
+
+  /**
+    * @require static/common.less
+    */
+  var _map = {
+    "res": {
+        "fis-conf_test.js": {
+            "uri": "/fis-conf_test.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "fis-conf_test"
+            }
+        },
+        "pagelet/cpdList/components/chartsItem.jsx": {
+            "uri": "/pagelet/cpdList/components/chartsItem.js",
+            "type": "js",
+            "extras": {
+                "async": [
+                    "static/lib/echarts.min.js"
+                ]
+            },
+            "deps": [
+                "pagelet/cpdList/echartsItem.less",
+                "react",
+                "react-dom",
+                "reactRouter",
+                "jquery",
+                "pagelet/parentClass/pc.jsx",
+                "static/minxins/utils.js"
+            ]
+        },
+        "pagelet/cpdList/components/cpdList.jsx": {
+            "uri": "/pagelet/cpdList/components/cpdList.js",
+            "type": "js",
+            "deps": [
+                "pagelet/cpdList/cpdList.less",
+                "react",
+                "react-dom",
+                "reactRouter",
+                "jquery",
+                "pagelet/parentClass/pc.jsx",
+                "pagelet/cpdList/components/chartsItem.jsx",
+                "static/minxins/utils.js"
+            ]
+        },
+        "pagelet/cpdList/cpdList.less": {
+            "uri": "/pagelet/cpdList/cpdList.css",
+            "type": "css"
+        },
+        "pagelet/cpdList/echartsItem.less": {
+            "uri": "/pagelet/cpdList/echartsItem.css",
+            "type": "css"
+        },
+        "pagelet/hotkeyword/action/action.js": {
+            "uri": "/pagelet/hotkeyword/action/action.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "pagelet/hotkeyword/action/action"
+            },
+            "deps": [
+                "reflux",
+                "jquery"
+            ]
+        },
+        "pagelet/hotkeyword/components/hotKeywordTop.jsx": {
+            "uri": "/pagelet/hotkeyword/components/hotKeywordTop.js",
+            "type": "js",
+            "deps": [
+                "pagelet/hotkeyword/hotkeyword.less",
+                "react",
+                "reactRouter",
+                "jquery",
+                "pagelet/hotkeyword/store/store.js",
+                "pagelet/hotkeyword/action/action.js",
+                "static/minxins/utils.js"
+            ]
+        },
+        "pagelet/hotkeyword/components/hotKeywordTop000.jsx": {
+            "uri": "/pagelet/hotkeyword/components/hotKeywordTop000.js",
+            "type": "js",
+            "deps": [
+                "pagelet/hotkeyword/hotkeyword.less",
+                "react",
+                "reactRouter",
+                "jquery",
+                "pagelet/hotkeyword/store/store.js",
+                "pagelet/hotkeyword/action/action.js",
+                "static/minxins/utils.js"
+            ]
+        },
+        "pagelet/hotkeyword/hotkeyword.less": {
+            "uri": "/pagelet/hotkeyword/hotkeyword.css",
+            "type": "css"
+        },
+        "pagelet/hotkeyword/store/store.js": {
+            "uri": "/pagelet/hotkeyword/store/store.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "pagelet/hotkeyword/store/store"
+            },
+            "deps": [
+                "reflux",
+                "pagelet/hotkeyword/action/action.js"
+            ]
+        },
+        "pagelet/parentClass/pc.jsx": {
+            "uri": "/pagelet/parentClass/pc.js",
+            "type": "js",
+            "deps": [
+                "react",
+                "jquery"
+            ]
+        },
+        "static/common.less": {
+            "uri": "/static/common.css",
+            "type": "css"
+        },
+        "constants": {
+            "uri": "/static/constants.js",
+            "type": "js"
+        },
+        "static/entry.jsx": {
+            "uri": "/static/entry.js",
+            "type": "js",
+            "deps": [
+                "react",
+                "react-dom",
+                "pagelet/cpdList/components/cpdList.jsx",
+                "reactRouter",
+                "jquery",
+                "pagelet/hotkeyword/components/hotKeywordTop.jsx"
+            ]
+        },
+        "static/font.less": {
+            "uri": "/static/font.css",
+            "type": "css"
+        },
+        "static/lib/echarts.min.js": {
+            "uri": "/static/lib/echarts.min.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "static/lib/echarts.min"
+            }
+        },
+        "jquery": {
+            "uri": "/static/lib/jquery.js",
+            "type": "js"
+        },
+        "lodash": {
+            "uri": "/static/lib/lodash.js",
+            "type": "js"
+        },
+        "static/lib/mod.js": {
+            "uri": "/static/lib/mod.js",
+            "type": "js"
+        },
+        "react-dom": {
+            "uri": "/static/lib/react-dom.js",
+            "type": "js",
+            "deps": [
+                "react"
+            ]
+        },
+        "react": {
+            "uri": "/static/lib/react.js",
+            "type": "js"
+        },
+        "reactRouter": {
+            "uri": "/static/lib/reactRouter.js",
+            "type": "js",
+            "deps": [
+                "react"
+            ]
+        },
+        "static/lib/reactRouter.js.back.2016-08-10.js": {
+            "uri": "/static/lib/reactRouter.js.back.2016-08-10.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "static/lib/reactRouter.js.back.2016-08-10"
+            },
+            "deps": [
+                "react"
+            ]
+        },
+        "reflux": {
+            "uri": "/static/lib/reflux.js",
+            "type": "js",
+            "deps": [
+                "./utils",
+                "./joins",
+                "./ActionMethods",
+                "./PublisherMethods",
+                "./Keep",
+                "./mixer",
+                "./bindMethods",
+                "./StoreMethods",
+                "./ListenerMethods",
+                "./createAction",
+                "./createStore",
+                "eventemitter3",
+                "reflux-core/lib/utils",
+                "reflux-core/lib/ListenerMethods",
+                "./ListenerMixin",
+                "reflux-core",
+                "./connect",
+                "./connectFilter",
+                "./listenTo",
+                "./listenToMany",
+                "./defineReact"
+            ]
+        },
+        "static/lib/reflux.js.back-2016-08-10.js": {
+            "uri": "/static/lib/reflux.js.back-2016-08-10.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "static/lib/reflux.js.back-2016-08-10"
+            },
+            "deps": [
+                "eventemitter3"
+            ]
+        },
+        "underscore": {
+            "uri": "/static/lib/underscore.js",
+            "type": "js"
+        },
+        "static/minxins/datetime.js": {
+            "uri": "/static/minxins/datetime.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "static/minxins/datetime"
+            }
+        },
+        "static/minxins/utils.js": {
+            "uri": "/static/minxins/utils.js",
+            "type": "js",
+            "extras": {
+                "moduleId": "static/minxins/utils"
+            },
+            "deps": [
+                "jquery"
+            ]
+        }
+    },
+    "pkg": {}
+};
+
+
+  var SEARCH_HOST = "";
+  require("static/minxins/utils");
+  require("static/minxins/datetime");
+  require("static/entry.jsx");
+
+  require.async(["static/lib/echarts.min"]);
+
+</script></html>
